@@ -1,3 +1,4 @@
+import features.database.Database;
 import features.dbQueryService.DatabaseQueryService;
 import features.dbQueryService.queriesClasses.*;
 
@@ -29,6 +30,9 @@ public class Main {
         List<ProjectPrices> prices = queryService.printProjectPrices();
         System.out.println("------------- Print Project Prices: --------------");
         printList(prices);
+
+        Database.getInstance().close();
+        System.gc();
     }
 
     private static <T> void printList(List<T> list) {
