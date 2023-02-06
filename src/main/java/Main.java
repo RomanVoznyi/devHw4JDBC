@@ -1,6 +1,4 @@
 import features.dbQueryService.DatabaseQueryService;
-import features.dbQueryService.queriesClasses.*;
-
 import java.util.List;
 
 public class Main {
@@ -10,30 +8,17 @@ public class Main {
 
         DatabaseQueryService queryService = new DatabaseQueryService();
 
-        List<LongestProject> longestProjects = queryService.findLongestProject();
-        System.out.println("------------- Find Longest Project: --------------");
-        printList(longestProjects);
-
-        List<MaxProjectsClient> clients = queryService.findMaxProjectsClient();
-        System.out.println("------------- Find Max Projects Client: --------------");
-        printList(clients);
-
-        List<MaxSalaryWorker> workers = queryService.findMaxSalaryWorker();
-        System.out.println("------------- Find Max Salary Worker: --------------");
-        printList(workers);
-
-        List<YoungestEldest> youngEldworkers = queryService.findYoungestEldestWorkers();
-        System.out.println("------------- Find Youngest Eldest Workers: --------------");
-        printList(youngEldworkers);
-
-        List<ProjectPrices> prices = queryService.printProjectPrices();
-        System.out.println("------------- Print Project Prices: --------------");
-        printList(prices);
+        printList(queryService.findLongestProject(), "Find Longest Project");
+        printList(queryService.findMaxProjectsClient(), "Find Max Projects Client");
+        printList(queryService.findMaxSalaryWorker(), "Find Max Salary Worker");
+        printList(queryService.findYoungestEldestWorkers(), "Find Youngest Eldest Workers");
+        printList(queryService.printProjectPrices(), "Print Project Prices");
 
         System.gc();
     }
 
-    private static <T> void printList(List<T> list) {
+    private static <T> void printList(List<T> list, String topic) {
+        System.out.println("------------- " + topic + ": --------------");
         for (T object : list) {
             System.out.println(object);
         }
