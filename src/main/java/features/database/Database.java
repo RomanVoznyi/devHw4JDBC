@@ -9,15 +9,7 @@ import java.sql.SQLException;
 public class Database {
     private static final Database INSTANCE = new Database();
 
-    private Connection connection;
-
     private Database() {
-        try {
-            String connectionUrl = new Settings().getSetting(Settings.DB_CONNECTION_KEY);
-            connection = DriverManager.getConnection(connectionUrl);
-        } catch (SQLException e) {
-           e.printStackTrace();
-        }
     }
 
     public static Database getInstance() {
@@ -25,14 +17,13 @@ public class Database {
     }
 
     public Connection getConnection() {
-        return connection;
-    }
-
-    public void close(){
+        Connection connection = null;
         try {
-            connection.close();
+            String connectionUrl = new Settings().getSetting(Settings.DB_CONNECTION_KEY);
+            connection = DriverManager.getConnection(connectionUrl);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return connection;
     }
 }

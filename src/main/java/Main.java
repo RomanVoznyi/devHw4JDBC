@@ -1,4 +1,3 @@
-import features.database.Database;
 import features.dbQueryService.DatabaseQueryService;
 import features.dbQueryService.queriesClasses.*;
 
@@ -31,7 +30,6 @@ public class Main {
         System.out.println("------------- Print Project Prices: --------------");
         printList(prices);
 
-        Database.getInstance().close();
         System.gc();
     }
 

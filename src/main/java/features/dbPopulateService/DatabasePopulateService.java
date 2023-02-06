@@ -13,15 +13,14 @@ import java.sql.Statement;
 public class DatabasePopulateService {
 
     public static void main(String[] args) {
-        Connection connection = Database.getInstance().getConnection();
 
-        try (Statement st = connection.createStatement()) {
+        try (Connection cn = Database.getInstance().getConnection();
+             Statement st = cn.createStatement()) {
             st.executeUpdate(readSql());
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        Database.getInstance().close();
         System.gc();
     }
 
